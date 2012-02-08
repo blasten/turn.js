@@ -42,7 +42,8 @@ $('#magazine').turn({page: 1, shadows: true, acceleration: true});
 jQuery 1.7 or later
 
 
-[Full documentation on turnjs.com/#reference](http://www.turnjs.com/#reference)
+
+[Full documentation on turnjs.com/#reference](https://github.com/blasten/turn.js/wiki/Reference)
 
 * * *
 
