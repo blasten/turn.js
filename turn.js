@@ -52,7 +52,7 @@ var pi = Math.PI,
 
 	flipOptions = {
 
-		// Page back
+		// Back page 
 		
 		back: null,
 
@@ -152,7 +152,7 @@ turnMethods = {
 		d.pages = {};
 		d.pageWrap = {};
 		d.pagePlace  = {};
-        d.pageMv    = [];
+		d.pageMv    = [];
 		d.totalPages = l;
 
 	
@@ -530,8 +530,6 @@ turnMethods = {
         		if (d.pagePlace[view[0]]==view[0]) apage = view[0];
         		else if (d.pagePlace[view[1]]==view[1]) apage = view[1];
 
-        		//console.log($.extend({}, pos), $.extend({}, d.pageMv));
-
         	for (p = 1; p <= d.totalPages; p++) { 
 
         		d.pageWrap[p].css({'z-index': pos.pageZ[p] || 0, 'display': (pos.pageV[p]) ? '' : 'none'});
@@ -856,16 +854,13 @@ flipMethods = {
 				}
 				
 				if (d.opt.frontShadow) {
-//gradientSize
-					ppcen =  gradientSize / ( (alpha<Math.atan2(width, height)) ? height / Math.cos(alpha) : width / Math.sin(alpha)) * 100;
-
-					//console.log(a,  height / Math.cos(alpha) );
-
+					
 					gradientStartV = gradientSize>100 ? (gradientSize-100)/gradientSize : 0;
 					gradientEndPointA = P(gradientSize*Math.sin(a90-alpha)/height*100, gradientSize*Math.cos(a90-alpha)/width*100);
 				
 					if (top) gradientEndPointA.y = 100-gradientEndPointA.y;
 					if (left) gradientEndPointA.x = 100-gradientEndPointA.x;
+					
 				}
 
 				if (d.opt.backShadow) {
@@ -894,15 +889,11 @@ flipMethods = {
 				d.fwrapper.transform(translate(-tr.x + mv.x + mvW, -tr.y + mv.y + mvH, ac) + rotate(-a), x);
 				d.fpage.parent().transform(rotate(a) + translate(tr.x + df.x - mv.x, tr.y + df.y - mv.y, ac), x);
 
-				if (d.opt.frontShadow) // && !isTouch
+				if (d.opt.frontShadow)
 					d.ashadow.css({'background-image':
 									'-webkit-gradient(linear, ' + (left?100:0)+'% '+(top?100:0)+'%, ' + gradientEndPointA.x + '% ' + gradientEndPointA.y + '%, color-stop(' + gradientStartV + ',rgba(0,0,0,0)), color-stop(' + (((1-gradientStartV)*0.8)+gradientStartV) + ',rgba(0,0,0,'+(0.2*gradientOpacity)+')), to(rgba(255,255,255,'+(0.2*gradientOpacity)+')) )'});
 			
-			
-				//d.ashadow.css({'background-image': '-moz-linear-gradient('+(-a)+'deg,  rgb(255,0,0) 0%, rgb(255,255,255) '+(ppcen/2)+'%, rgb(255,255,255) '+(ppcen*0.98)+'%, rgb(0,0,0) '+(ppcen*0.99)+'%, rgb(0,0,0) 99%)'});
-
-			//	console.log(ppcen);
-				if (d.opt.backShadow) // && !isTouch
+				if (d.opt.backShadow)
 					d.bshadow.css({'background-image': 
 									'-webkit-gradient(linear, ' + (left?0:100)+'% '+(top?0:100)+'%, ' + gradientEndPointB.x + '% ' + gradientEndPointB.y + '%,  color-stop(0.8,rgba(0,0,0,0)), color-stop(1, rgba(0,0,0,'+(0.2*gradientOpacity)+')), to(rgba(0,0,0,0)) )'});
 
@@ -1111,7 +1102,6 @@ flipMethods = {
 
 				},
 				duration: d.opt.duration,
-				/*duration: 10000,*/
 				turning: true
 			});
 
