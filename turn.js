@@ -362,7 +362,6 @@ turnMethods = {
 
 					d.tpage = prev;
 					o.pageMv = page;
-				
 		
 					d.pages[prev].flip('hideThumbIndex', true);
 					d.pages[page].trigger('flip');
@@ -393,7 +392,7 @@ turnMethods = {
 		o.pageMv = o.page;
 
 		turnMethods._addMv.apply(turn, [o.pageMv]);
-       	dd.pagePlace[o.next] = o.page;
+		dd.pagePlace[o.next] = o.page;
 		turn.turn('update');
 
 	},
