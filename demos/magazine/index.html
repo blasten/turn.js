@@ -9,19 +9,16 @@ body{
 	background:#ccc;
 }
 #magazine{
-	width:1152px;
-	height:752px;
 }
 #magazine .turn-page{
-	width:576px;
-	height:752px;
 	background-color:#ccc;
 	background-size:100% 100%;
 }
 </style>
 </head>
 <body>
-<div id='magazine'>
+
+<div id="magazine">
 	<div style="background-image:url(pages/01.jpg);"></div>
 	<div style="background-image:url(pages/02.jpg);"></div>
 	<div style="background-image:url(pages/03.jpg);"></div>
@@ -39,7 +36,7 @@ body{
 
 	})
 
-	$('#magazine').turn({acceleration: true, shadows: true});
+	$('#magazine').turn({width: 1152, height: 752, acceleration: true, shadows: !$.isTouch});
 
 
 </script>
