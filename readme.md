@@ -12,13 +12,7 @@ touch devices.
 
 **CSS code:**
 <pre>
-#magazine{
-	width:800px;
-	height:400px;
-}
 #magazine .turn-page{
-	width:400px;
-	height:400px;
 	background-color:#ccc;
 }
 </pre>
@@ -34,7 +28,7 @@ touch devices.
 
 **JavaScript code:**
 <pre>
-$('#magazine').turn({page: 1, shadows: true, acceleration: true});
+$('#magazine').turn({width:800, height: 400, page: 1, shadows: true, acceleration: true});
 </pre>
 
 #### Requeriments
