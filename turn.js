@@ -194,7 +194,7 @@ turnMethods = {
 
 		}
 
-		turnMethods.page.apply(this, [opt.page]);
+		turnMethods.page.call(this, opt.page);
 
 		d.done = true;
 
@@ -251,14 +251,14 @@ turnMethods = {
 	_addMv: function(page) {
 
 		var d = this.data();
-		turnMethods._removeMv.apply(this, [page]);
+		turnMethods._removeMv.call(this, page);
 		d.pageMv.push(page);
 
 	},
 
 	view: function(page) {
 
-		var  d = this.data(), v = turnMethods._visiblePages.apply(this, [page]);
+		var  d = this.data(), v = turnMethods._visiblePages.call(this, page);
 		return [(d.pages[v[0]]) ? v[0] : 0, (d.pages[v[1]]) ? v[1] : 0];
 
 	},
@@ -279,7 +279,7 @@ turnMethods = {
 		for (p=1; p<=d.totalPages; p++) {
 			var dd = d.pages[p].data(), o = dd.pageFlip.opt;
 			d.pages[p].flip('hideThumbIndex');
-			flipMethods._moveBackPage.apply(d.pages[p], [null]);
+			flipMethods._moveBackPage.call(d.pages[p], null);
 			d.pagePlace[o.next] = o.next;
 
 			if (o.force) {
@@ -329,7 +329,7 @@ turnMethods = {
 					o.next = next; 
 					d.pagePlace[o.next] = o.page;
 					o.force = true;
-					flipMethods._moveBackPage.apply(d.pages[current], [false]);
+					flipMethods._moveBackPage.call(d.pages[current], false);
 					d.pages[current].flip('setBackPage', d.pageObjs[next]);
 				}
 
@@ -346,7 +346,7 @@ turnMethods = {
 
 	next: function() {
 
-		turnMethods._moveTo.apply(this, [1]);
+		turnMethods._moveTo.call(this, 1);
 
 		return this;
 	
@@ -354,7 +354,7 @@ turnMethods = {
 
 	previous: function() {
 
-		turnMethods._moveTo.apply(this, [-1]);
+		turnMethods._moveTo.call(this, -1);
 
 		return this;
 
@@ -364,7 +364,7 @@ turnMethods = {
 
 		var i,
 			d = this.data(),
-			page = turnMethods._visiblePages.apply(this, [d.tpage || d.page])[(direction==1) ? 1 : 0],
+			page = turnMethods._visiblePages.call(this, d.tpage || d.page)[(direction==1) ? 1 : 0],
 			prev = page + direction,
 			data = function(p) { return d.pages[p].data().pageFlip; };
 
@@ -381,11 +381,12 @@ turnMethods = {
 
 					var o = data(prev).opt;
 
-					turnMethods._removeMv.apply(this, [o.pageMv]);
-					turnMethods._addMv.apply(this, [page]);
+					turnMethods._removeMv.call(this, o.pageMv);
+					turnMethods._addMv.call(this, page);
 
 					d.tpage = prev;
 					o.pageMv = page;
+				
 		
 					d.pages[prev].flip('hideThumbIndex', true);
 					d.pages[page].trigger('flip');
@@ -397,8 +398,8 @@ turnMethods = {
 					
 					if (data(page).fwrapper.is(":visible")) {
 						var o = data(page).opt;
-						turnMethods._removeMv.apply(this, [o.pageMv]);
-						turnMethods._addPage.apply(d.pages[page]);
+						turnMethods._removeMv.call(this, o.pageMv);
+						turnMethods._addPage.call(d.pages[page]);
 					}
 
 					d.pages[page].flip('turnPage');
@@ -415,7 +416,7 @@ turnMethods = {
 
 		o.pageMv = o.page;
 
-		turnMethods._addMv.apply(turn, [o.pageMv]);
+		turnMethods._addMv.call(turn, o.pageMv);
 		dd.pagePlace[o.next] = o.page;
 		turn.turn('update');
 
@@ -426,7 +427,7 @@ turnMethods = {
 		var o = $(this).data().pageFlip.opt;
 		e.stopPropagation();
 
-		turnMethods._addPage.apply(this);
+		turnMethods._addPage.call(this);
 
 		o.turn.trigger('start', [o.page]);
 
@@ -439,34 +440,33 @@ turnMethods = {
 		var that = $(this),
 			o = that.data().pageFlip.opt, 
 			turn = o.turn,
-			dd = turn.data();
+            dd = turn.data();
 
 
-		if (turned || dd.tpage) {
+        if (turned || dd.tpage) {
 
-			if (dd.tpage==o.next || dd.pageMv.length==0) { 
+       		if (dd.tpage==o.next || dd.pageMv.length==0) { 
       
-				dd.page = dd.tpage || o.next;
-				delete dd['tpage'];
-				turn.turn('page', dd.page);
+         		dd.page = dd.tpage || o.next;
+         		delete dd['tpage'];
+         		turn.turn('page', dd.page);
 
          	}
 
-			if (o.force) {
+         	if (o.force) {
 
-				o.next = (o.page%2==0) ? o.page-1 : o.page+1;
-				that.flip('setBackPage', turn.data().pageObjs[o.next]);
-				delete o['force'];
+         		o.next = (o.page%2==0) ? o.page-1 : o.page+1;
+         		that.flip('setBackPage', turn.data().pageObjs[o.next]);
+         		delete o['force'];
 
-			}
+         	}
 
-		} else {
-			
-			turnMethods._removeMv.apply(turn, [o.pageMv]);
-			turn.turn('update');
+         } else {
+         	turnMethods._removeMv.call(turn, o.pageMv);
+         	turn.turn('update');
+         }
 
-		}
-
+        // console.trace();
 		turn.trigger('end', [o.page, this]);
 	
 	},
@@ -655,9 +655,9 @@ flipMethods = {
 			opt.backShadow = true;
 		}
 
-		flipMethods.setData.apply(this, [{'opt': $.extend({}, flipOptions, opt) }]);
-		flipMethods._addEvents.apply(this);
-		flipMethods._addPageWrapper.apply(this);
+		flipMethods.setData.call(this, {opt: $.extend({}, flipOptions, opt) });
+		flipMethods._addEvents.call(this);
+		flipMethods._addPageWrapper.call(this);
 
 		return this;
 	},
@@ -689,7 +689,7 @@ flipMethods = {
 			x = Math.max(0, e[0].pageX-pos.left), 
 			y = Math.max(0, e[0].pageY-pos.top), 
 			csz = d.opt.cornerSize,
-			cAllowed = flipMethods._cAllowed.apply(this);
+			cAllowed = flipMethods._cAllowed.call(this);
 
 			if (!d.opt.back || x<=0 || y<=0 || x>=width || y>=height) corner = false;
 			else if (x<=csz && y<=csz) corner = 'tl';
@@ -1007,10 +1007,22 @@ flipMethods = {
 
 		var d = this.data().pageFlip;
 
-		if (d.opt.back)
+		if (d.opt.back) {
+
+			// Chrome 17-18 beta bug
+			// http://code.google.com/p/chromium/issues/detail?id=114617
+
+			var user = navigator.userAgent;
+
+			if (user.indexOf('Chrome/17.')!=-1 || user.indexOf('Chrome/18.')!=-1) {
+				var bg = d.opt.back.css('background-image');
+				d.opt.back.css({'background-image': ''}).css({'background-image': bg});
+			}
+			// end
+
 			if (bool) {
 				if (!( (d.ashadow? '1' : '0') in d.fpage.children())) {
-					flipMethods.setData.call(this, {'backParent': d.opt.back.parent() });
+					flipMethods.setData.call(this, {backParent: d.opt.back.parent() });
 					d.fpage.prepend(d.opt.back);
 				}
 			} else {
@@ -1018,6 +1030,7 @@ flipMethods = {
 					d.backParent.prepend(d.opt.back);
 
 			}
+		}	
 
 	},
 
@@ -1073,7 +1086,7 @@ flipMethods = {
 		d.fwrapper.hide();
 
 		if (d.opt.backShadow)
-				d.bshadow.hide();
+			d.bshadow.hide();
 
 		d.opt.back.transform('', '0% 0%');
 
@@ -1187,7 +1200,7 @@ flipMethods = {
 		var d = this.data().pageFlip;
 
 		if (!d.disabled && !this.flip('isTurning')) {
-			d.cornerActivated = flipMethods._cornerActivated.apply(this, [e]);
+			d.cornerActivated = flipMethods._cornerActivated.call(this, e);
 			if (d.cornerActivated) {
 				flipMethods._moveBackPage.call(this, true);
 				this.trigger('pressed', [d.p]);	
@@ -1235,7 +1248,7 @@ flipMethods = {
 
 	disable: function(disable) {
 
-		flipMethods.setData.apply(this, [{'disabled': disable}]);
+		flipMethods.setData.call(this, {'disabled': disable});
 
 	}
 },

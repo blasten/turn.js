@@ -36,7 +36,8 @@ $('#magazine').turn({width:800, height: 400, page: 1, shadows: true, acceleratio
 jQuery 1.7 or later
 
 
-[Full documentation on turnjs.com/#reference](http://www.turnjs.com/#reference)
+
+[Full documentation](https://github.com/blasten/turn.js/wiki/Reference)
 
 * * *
 
