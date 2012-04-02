@@ -14,6 +14,7 @@ Release 3 - 2012/03/01
 - Added 'display'
 - Added 'when' to the initial configuration
 - Added 'pages' to the initial configuration
+- Added 'inclination' to the initial configuration
 - Added 'first' event
 - Added 'last' event
 - Added gradients for non-webkit browsers
