@@ -1,9 +1,17 @@
-turn.js
+turn.js 3rd release
 =========
 
 ### Make a flip book with HTML5
 
 Turn.js is a plugin for jQuery that adds a beautiful transition similar to real pages in a book or magazine. It works in all modern browsers including touch devices
+
+### What's new?
+
+- New `addPage`` for creating pages dynamically
+
+- New ``display``
+
+- Gradients for non-webkit browsers
 
 #### Usage
 
