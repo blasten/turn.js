@@ -1,17 +1,18 @@
 turn.js
 =========
 
-### The awesome paper-like effect made for HTML5
+### Make a flip book with HTML5
 
-Turn.js is a plugin for jQuery that adds a beautiful transition similar 
-to real pages in a book or magazine. It works in all modern browsers including
-touch devices. 
+Turn.js is a plugin for jQuery that adds a beautiful transition similar to real pages in a book or magazine. It works in all modern browsers including touch devices
 
-
-#### Example
+#### Usage
 
 **CSS code:**
 <pre>
+#magazine{
+	width: 800px;
+	height: 400px;
+}
 #magazine .turn-page{
 	background-color:#ccc;
 }
@@ -28,7 +29,7 @@ touch devices.
 
 **JavaScript code:**
 <pre>
-$('#magazine').turn({width:800, height: 400, page: 1, shadows: true, acceleration: true});
+$('#magazine').turn({gradients: true, acceleration: true});
 </pre>
 
 #### Requeriments

@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../../../turn.min.js"></script>
+
+<style type="text/css">
+body{
+	background:#ccc;
+}
+#bible{
+	width:800px;
+	height:500px;
+}
+#bible .turn-page{
+	background-color:white;
+}
+#bible .cover{
+	background:#333;
+}
+
+#bible .cover h1{
+	color:white;
+	text-align:center;
+	font-size:50px;
+	line-height:500px;
+}
+
+#bible .cover p{
+	color:white;
+	text-align:center;
+	font-size:15px;
+	margin:0px;
+	color:#999;
+}
+
+#bible .loader{
+	background-image:url(loader.gif);
+	width:24px;
+	height:24px;
+	display:block;
+	position:absolute;
+	top:238px;
+	left:188px;
+}
+
+#bible .data{
+	text-align:center;
+	font-size:40px;
+	color:#999;
+	line-height:500px;
+}
+
+#controls{
+	width:800px;
+	text-align:center;
+	margin:20px 0px;
+}
+#controls input, #controls label{
+	font:30px arial;
+}
+</style>
+</head>
+<body>
+
+<div id="bible">
+	<div class="cover"><h1>The Bible</h1></div>
+</div>
+
+<div id="controls">
+<label for="page-number">Page:</label> <input type="text" size="3" id="page-number">
+</div>
+
+<script type="text/javascript">
+
+	// Sample using dynamic pages with turn.js
+
+
+	// Adds the pages that the book will need
+	function addPage(page, book) {
+
+		// 	First check if the page is already in the book
+		if (!book.turn('hasPage', page)) {
+			// If not then add the page
+			var newPage = $('<div />', {'class': 'page', 'id': 'page-'+page}).html('<i class="loader"></i>');
+			book.turn('addPage', newPage, page);
+			// Let's assum that the data is comming from the server and the request takes 1s.
+			setTimeout(function(){
+					newPage.html('<div class="data">Data for page '+page+'</div>');
+			}, 1000);
+		}
+	}
+
+
+	$('#bible').turn({acceleration: true,
+						pages: 1000, // How many pages does this book have?
+						elevation:50,
+						gradients: !$.isTouch, 
+						when: {
+							turning: function(e, page, view) {
+
+								// Gets the range of pages that the book needs right now
+								var range = $(this).turn('range', page);
+
+								// Check if each page is within the book
+								for (page = range[0]; page<=range[1]; page++) 
+									addPage(page, $(this));
+
+							},
+
+							turned: function(e, page) {
+								$('#page-number').val(page);
+							}
+						}
+					});
+
+	$('#page-number').keydown(function(e){
+
+		if (e.keyCode==13)
+			$('#bible').turn('page', $('#page-number').val());
+			
+	});		
+
+	$(window).bind('keydown', function(e){
+
+		if (e.keyCode==37)
+			$('#bible').turn('previous');
+		else if (e.keyCode==39)
+			$('#bible').turn('next');
+
+	});
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
