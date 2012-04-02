@@ -1,16 +1,31 @@
-turn.js
+TURN.JS
 ------------------------------------------------------
-To see more details of bugs, go to this URL:
-https://github.com/blasten/turn.js/issue
-
-www.turnjs.com
-
+Github: https://github.com/blasten/turn.js
+Reference: https://github.com/blasten/turn.js/wiki/Reference
+Website: www.turnjs.com 
 ------------------------------------------------------
-0.11 - 2012/02/15
+Release 3 - 2012/03/01
 ------------------------------------------------------
 
-- 	Method and property 'size' added.
+- Added 'range'
+- Added 'addPage'
+- Added 'removePage'
+- Added 'hasPage'
+- Added 'display'
+- Added 'when' to the initial configuration
+- Added 'pages' to the initial configuration
+- Added 'first' event
+- Added 'last' event
+- Added gradients for non-webkit browsers
 
-- 	Bug in Chrome 17-18 Beta about losing background-image was fixed. 
-	This is a temporal change until Chromium developer team solves the real problem.
-	http://code.google.com/p/chromium/issues/detail?id=114617
+------------------------------------------------------
+Release 2 - 2012/02/15
+------------------------------------------------------
+
+- Added 'size'.
+- Bug in Chrome 17-18 Beta about losing background-image was fixed.
+
+------------------------------------------------------
+Release 1 - 2012/02/05
+------------------------------------------------------
+- First alpha release 
