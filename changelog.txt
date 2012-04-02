@@ -11,6 +11,7 @@ Release 3 - 2012/03/01
 - Added 'addPage'
 - Added 'removePage'
 - Added 'hasPage'
+- Added 'pages'
 - Added 'display'
 - Added 'when' to the initial configuration
 - Added 'pages' to the initial configuration
