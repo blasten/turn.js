@@ -296,7 +296,8 @@ turnMethods = {
 			if (data.done) this.turn('stop');
 
 			// Move pages if it's necessary
-			turnMethods._movePages.call(this, page, 1);
+			if (page in data.pageObjs)
+				turnMethods._movePages.call(this, page, 1);
 
 			// Update number of pages
 			if (incPages)
@@ -309,7 +310,8 @@ turnMethods = {
 			turnMethods._addPage.call(this, page);
 
 			// Update view
-			if (data.done) this.turn('update');
+			if (data.done)
+				this.turn('update');
 
 			turnMethods._removeFromDOM.call(this);
 		}
@@ -374,7 +376,8 @@ turnMethods = {
 	
 	hasPage: function(page) {
 
-		return !!this.data().pageObjs[page];
+		//console.log($.extend({}, this.data().pageObjs), page in this.data().pageObjs, page);
+		return page in this.data().pageObjs;
 	
 	},
 
@@ -481,7 +484,7 @@ turnMethods = {
 	// Releases memory by removing pages from the DOM
 
 	_removeFromDOM: function() {
-	
+
 		var page, data = this.data();
 
 		for (page in data.pageWrap)
@@ -550,7 +553,7 @@ turnMethods = {
 	// Moves pages
 
 	_movePages: function(from, change) {
-		
+
 		var page,
 			data = this.data(),
 			single = data.display=='single',
@@ -716,7 +719,7 @@ turnMethods = {
 	// Removes an animation from the cache
 
 	_removeMv: function(page) {
-	
+
 		var i, data = this.data();
 			
 		for (i=0; i<data.pageMv.length; i++)
@@ -748,7 +751,6 @@ turnMethods = {
 		page = page || data.page;
 
 		if (data.display=='double')
-	//								Even			Odd
 			return (page%2) ? [page-1, page] : [page, page+1];
 		else
 			return [page];
@@ -825,7 +827,7 @@ turnMethods = {
 	// Sets a page without effect
 
 	_fitPage: function(page, ok) {
-	
+		
 		var data = this.data(), newView = this.turn('view', page);
 		
 		if (data.page!=page) {
@@ -838,8 +840,6 @@ turnMethods = {
 			return;
 
 		data.tpage = page;
-
-	
 
 		this.turn('stop', ok);
 		turnMethods._removeFromDOM.call(this);
@@ -928,7 +928,7 @@ turnMethods = {
 	next: function() {
 
 		var data = this.data();
-		return this.turn('page', turnMethods._view.call(this, data.tpage || data.page).pop() + 1);
+		return this.turn('page', turnMethods._view.call(this, data.page).pop() + 1);
 	
 	},
 
@@ -937,7 +937,7 @@ turnMethods = {
 	previous: function() {
 		
 		var data = this.data();
-		return this.turn('page', turnMethods._view.call(this, data.tpage || data.page).shift() - 1);
+		return this.turn('page', turnMethods._view.call(this, data.page).shift() - 1);
 
 	},
 
