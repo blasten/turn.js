@@ -21,8 +21,8 @@ var has3d,
 
 	isTouch = 'Touch' in window,
 
-	events = (isTouch)	? {start: 'touchstart', move: 'touchmove', end: 'touchend'}
-						: {start: 'mousedown', move: 'mousemove', end: 'mouseup'},
+	events = (isTouch) ? {start: 'touchstart', move: 'touchmove', end: 'touchend'}
+			: {start: 'mousedown', move: 'mousemove', end: 'mouseup'},
 
 	// Contansts used for each corner
 	// tl * tr
@@ -1512,14 +1512,18 @@ flipMethods = {
 					gradient(data.ashadow,
 							point2D(left?100:0, top?100:0),
 							point2D(gradientEndPointA.x, gradientEndPointA.y),
-							[[gradientStartV, 'rgba(0,0,0,0)'], [((1-gradientStartV)*0.8)+gradientStartV, 'rgba(0,0,0,'+(0.2*gradientOpacity)+')'], [1, 'rgba(255,255,255,'+(0.2*gradientOpacity)+')']],
+							[[gradientStartV, 'rgba(0,0,0,0)'],
+							[((1-gradientStartV)*0.8)+gradientStartV, 'rgba(0,0,0,'+(0.2*gradientOpacity)+')'],
+							[1, 'rgba(255,255,255,'+(0.2*gradientOpacity)+')']],
 							3);
 		
 				if (flipMethods._backGradient.call(that))
 					gradient(data.bshadow,
 							point2D(left?0:100, top?0:100),
 							point2D(gradientEndPointB.x, gradientEndPointB.y),
-							[[0.8, 'rgba(0,0,0,0)'], [1, 'rgba(0,0,0,'+(0.3*gradientOpacity)+')'], [1, 'rgba(0,0,0,0)']],
+							[[0.8, 'rgba(0,0,0,0)'],
+							[1, 'rgba(0,0,0,'+(0.3*gradientOpacity)+')'],
+							[1, 'rgba(0,0,0,0)']],
 							3);
 				
 			};
