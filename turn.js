@@ -145,33 +145,42 @@ var has3d,
 		return {x: x, y: y};
 	},
 
+	// Returns the traslate value
+
 	translate = function(x, y, use3d) {
 		return (has3d && use3d) ? ' translate3d(' + x + 'px,' + y + 'px, 0px) ' : ' translate(' + x + 'px, ' + y + 'px) ';
 	},
+
+	// Returns the rotation value
 
 	rotate = function(degrees) {
 		return ' rotate(' + degrees + 'deg) ';
 	},
 
+	// Checks if a property belongs to an object
+
 	has = function(property, object) {
 		return Object.prototype.hasOwnProperty.call(object, property);
 	},
 
+	// Gets the CSS3 vendor prefix
+
 	getPrefix = function() {
 		var vendorPrefixes = ['Moz','Webkit','Khtml','O','ms'],
-			style = document.body.style,
 			len = vendorPrefixes.length,
 			vendor = '';
 
 		while (len--)
-			if ((vendorPrefixes[len] + 'Transform') in style)
+			if ((vendorPrefixes[len] + 'Transform') in document.body.style)
 				vendor='-'+vendorPrefixes[len].toLowerCase()+'-';
 
 		return vendor;
 	},
 
-	gradient = function(obj, p0, p1, colors, numColors) {
+	// Adds gradients
 
+	gradient = function(obj, p0, p1, colors, numColors) {
+	
 		var j, cols = [];
 
 		if (vendor=='-webkit-') {
@@ -183,21 +192,27 @@ var has3d,
 
 		} else {
 
+			// This procedure makes the gradients for non-webkit browsers
+			// Hopefully this procedure will be reduced to one unique way for gradients
+			
+			p0 = {x:p0.x/100 * obj.width(), y:p0.y/100 * obj.height()};
+			p1 = {x:p1.x/100 * obj.width(), y:p1.y/100 * obj.height()};
+
 			var dx = p1.x-p0.x,
 				dy = p1.y-p0.y,
 				angle = Math.atan2(dy, dx),
 				angle2 = angle - Math.PI/2,
-				diagonal = Math.abs(100*Math.sin(angle2)) + Math.abs(100*Math.cos(angle2)),
+				diagonal = Math.abs(obj.width()*Math.sin(angle2)) + Math.abs(obj.height()*Math.cos(angle2)),
 				gradientDiagonal = Math.sqrt(dy*dy + dx*dx),
-				corner = point2D((p1.x<p0.x) ? 100 : 0, (p1.y<p0.y) ? 100 : 0),
+				corner = point2D((p1.x<p0.x) ? obj.width() : 0, (p1.y<p0.y) ? obj.height() : 0),
 				slope = Math.tan(angle),
 				inverse = -1/slope,
 				x = (inverse*corner.x - corner.y - slope*p0.x + p0.y) / (inverse-slope),
 				c = {x: x, y: inverse*x - inverse*corner.x + corner.y},
-				segA = Math.sqrt( Math.pow(c.x-p0.x,2) + Math.pow(c.y-p0.y,2))*1;
+				segA = (Math.sqrt( Math.pow(c.x-p0.x,2) + Math.pow(c.y-p0.y,2)));
 
 				for (j = 0; j<numColors; j++)
-					cols.push(' '+colors[j][1]+' '+Math.round((segA + gradientDiagonal*colors[j][0] )*100/diagonal)+'%');
+					cols.push(' '+colors[j][1]+' '+(( segA + gradientDiagonal*colors[j][0] )*100/diagonal)+'%');
 		
 				obj.css({'background-image': vendor+'linear-gradient(' + (-angle) + 'rad,' + cols.join(',') + ')'});
 		}
@@ -210,7 +225,7 @@ turnMethods = {
 
 	init: function(opts) {
 
-		// Define constant
+		// Define constants
 		if (has3d===undefined) {
 			has3d = 'WebKitCSSMatrix' in window || 'MozPerspective' in document.body.style;
 			vendor = getPrefix();
@@ -245,7 +260,7 @@ turnMethods = {
 	
 		this.turn('page', opts.page);
 
-		// Events
+		// Event listeners
 
 		$(this).bind(events.start, function(e) {
 			for (var page in data.pages)
@@ -376,7 +391,6 @@ turnMethods = {
 	
 	hasPage: function(page) {
 
-		//console.log($.extend({}, this.data().pageObjs), page in this.data().pageObjs, page);
 		return page in this.data().pageObjs;
 	
 	},
@@ -476,7 +490,7 @@ turnMethods = {
 			return true;
 
 		var range = this.turn('range');
-		
+
 		return page>=range[0] && page<=range[1];
 		
 	},
@@ -560,20 +574,20 @@ turnMethods = {
 			move = function(page) {
 
 				var next = page + change,
-					pair = next%2;
+					odd = next%2;
 
 				if (data.pageObjs[page])
 					data.pageObjs[next] = data.pageObjs[page].removeClass('page' + page).addClass('page' + next);
 
 				if (data.pagePlace[page] && data.pageWrap[page]) {
 					data.pagePlace[next] = next;
-					data.pageWrap[next] = data.pageWrap[page].css(pagePosition[(single) ? 0 : pair]).attr('page', next);
+					data.pageWrap[next] = data.pageWrap[page].css(pagePosition[(single) ? 0 : odd]).attr('page', next);
 					
 					if (data.pages[page])
 						data.pages[next] = data.pages[page].flip('options', {
 							page: next,
-							next: (single || pair) ? next+1 : next-1,
-							corners: (single) ? 'all' : ((pair) ? 'forward' : 'backward')
+							next: (single || odd) ? next+1 : next-1,
+							corners: (single) ? 'all' : ((odd) ? 'forward' : 'backward')
 						});
 
 					if (change) {
@@ -629,7 +643,6 @@ turnMethods = {
 				turnMethods._movePages.call(this, 1, 0);
 				this.turn('size', size.width, size.height).
 						turn('update');
-
 			}
 
 			return this;
@@ -655,9 +668,7 @@ turnMethods = {
 			data = this.data(),
 			view = this.turn('view');
 
-			bool = typeof(bool)=='undefined' || bool===true;
-
-			data.disabled = bool;
+			data.disabled = bool===undefined || bool===true;
 
 		for (page in data.pages)
 			if (has(page, data.pages))
@@ -682,6 +693,7 @@ turnMethods = {
 			
 			for (page in data.pageWrap) {
 				if (!has(page, data.pageWrap)) continue;
+				data.pageObjs[page].css({width: pageWidth, height: height});
 				data.pageWrap[page].css({width: pageWidth, height: height});
 				if (data.pages[page])
 					data.pages[page].css({width: pageWidth, height: height});
@@ -764,7 +776,7 @@ turnMethods = {
 		var data = this.data(), view = turnMethods._view.call(this, page);
 
 		return (data.display=='double') ? [(view[0]>0) ? view[0] : 0, (view[1]<=data.totalPages) ? view[1] : 0]
-										: [(view[0]>0 && view[0]<=data.totalPages) ? view[0] : 0];
+				: [(view[0]>0 && view[0]<=data.totalPages) ? view[0] : 0];
 
 	},
 
@@ -964,6 +976,7 @@ turnMethods = {
 				event = $.Event('start');
 
 			e.stopPropagation();
+
 			opts.turn.trigger(event, [opts, corner]);
 
 			if (event.isDefaultPrevented()) {
@@ -1112,8 +1125,7 @@ turnMethods = {
 		
 			for (page in data.pageWrap) {
 
-				if (!has(page, data.pageWrap))
-					continue;
+				if (!has(page, data.pageWrap)) continue;
 
 				data.pageWrap[page].css({display: (pos.pageV[page]) ? '' : 'none', 'z-index': pos.pageZ[page] || 0});
 
@@ -1152,7 +1164,7 @@ turnMethods = {
 		if (page==view[0] || page==view[1]) {
 			data.pageWrap[page].css({'z-index': data.totalPages, display: ''});
 			return 1;
-		} else if((data.display=='single' && page==view[0]+1) || (data.display=='double' && page==view[0]-2 || page==view[1]+2)) {
+		} else if ((data.display=='single' && page==view[0]+1) || (data.display=='double' && page==view[0]-2 || page==view[1]+2)) {
 			data.pageWrap[page].css({'z-index': data.totalPages-1, display: ''});
 			return 2;
 		} else {
@@ -1248,13 +1260,19 @@ flipMethods = {
 	_c: function(corner, opts) {
 
 		opts = opts || 0;
-		return ({tl: point2D(opts, opts), tr: point2D(this.width()-opts, opts), bl: point2D(opts, this.height()-opts), br: point2D(this.width()-opts, this.height()-opts)})[corner];
+		return ({tl: point2D(opts, opts),
+				tr: point2D(this.width()-opts, opts),
+				bl: point2D(opts, this.height()-opts),
+				br: point2D(this.width()-opts, this.height()-opts)})[corner];
 
 	},
 
 	_c2: function(corner) {
 
-		return {tl: point2D(this.width()*2, 0), tr: point2D(-this.width(), 0), bl: point2D(this.width()*2, this.height()), br: point2D(-this.width(), this.height())}[corner];
+		return {tl: point2D(this.width()*2, 0),
+				tr: point2D(-this.width(), 0),
+				bl: point2D(this.width()*2, this.height()),
+				br: point2D(-this.width(), this.height())}[corner];
 
 	},
 
@@ -1515,7 +1533,8 @@ flipMethods = {
 							[[gradientStartV, 'rgba(0,0,0,0)'],
 							[((1-gradientStartV)*0.8)+gradientStartV, 'rgba(0,0,0,'+(0.2*gradientOpacity)+')'],
 							[1, 'rgba(255,255,255,'+(0.2*gradientOpacity)+')']],
-							3);
+							3,
+							alpha);
 		
 				if (flipMethods._backGradient.call(that))
 					gradient(data.bshadow,
@@ -1547,7 +1566,7 @@ flipMethods = {
 				point.x = Math.max(point.x, 1);
 				compute();
 				transform(point2D(tr.x, -tr.y), [1,1,0,0], [100, 100], -a);
-				data.fpage.transform(translate(-height, 0, ac) + rotate(-90+a*2 ), '100% 0%');
+				data.fpage.transform(translate(-height, 0, ac) + rotate(-90+a*2), '100% 0%');
 				folding.transform(rotate(270) + translate(-width, 0, ac), '0% 0%');
 			break;
 			case 'br' :
@@ -1570,15 +1589,6 @@ flipMethods = {
 			folding = flipMethods._foldingPage.call(this);
 
 		if (folding) {
-
-			/*
-			// http://code.google.com/p/chromium/issues/detail?id=114617
-			var user = navigator.userAgent;
-			if (user.indexOf('Chrome/17.')!=-1 || user.indexOf('Chrome/18.')!=-1) {
-				var bg = folding.css('background-image');
-				folding.css({'background-image': ''}).css({'background-image': bg});
-			}*/
-
 			if (bool) {
 				if (!data.fpage.children()[data.ashadow? '1' : '0']) {
 					flipMethods.setData.call(this, {backParent: folding.parent()});
@@ -1665,7 +1675,7 @@ flipMethods = {
 		return this;
 	},
 
-	hideFoldedPage: function(interpolate) {
+	hideFoldedPage: function(animate) {
 
 		var data = this.data().f;
 
@@ -1679,7 +1689,7 @@ flipMethods = {
 				that.trigger('end', [false]);
 			};
 
-		if (interpolate) {
+		if (animate) {
 			var p4 = flipMethods._c.call(this, p1.corner),
 				top = (p1.corner.substr(0,1)=='t'),
 				delta = (top) ? Math.min(0, p1.y-p4.y)/2 : Math.max(0, p1.y-p4.y)/2,
