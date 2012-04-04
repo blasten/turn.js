@@ -193,7 +193,7 @@ var has3d,
 		} else {
 
 			// This procedure makes the gradients for non-webkit browsers
-			// Hopefully this procedure will be reduced to one unique way for gradients
+			// It will be reduced to one unique way for gradients in next versions
 			
 			p0 = {x:p0.x/100 * obj.width(), y:p0.y/100 * obj.height()};
 			p1 = {x:p1.x/100 * obj.width(), y:p1.y/100 * obj.height()};
