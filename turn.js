@@ -409,7 +409,7 @@ turnMethods = {
 			data.pages[page] = data.pageObjs[page].
 								css({width: (single) ? this.width() : this.width()/2, height: this.height()}).
 								flip({page: page,
-									next: (even || single) ? page+1 : page-1,
+									next: (single && page === data.totalPages) ? page -1 : ((even || single) ? page+1 : page-1),
 									turn: this,
 									duration: data.opts.duration,
 									acceleration : data.opts.acceleration,
@@ -1232,6 +1232,9 @@ flipMethods = {
 	},
 
 	_cornerActivated: function(e) {
+		if (e.originalEvent === undefined) {
+			return false;
+		}		
 
 		e = (isTouch) ? e.originalEvent.touches : [e];
 
