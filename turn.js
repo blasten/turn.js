@@ -987,7 +987,7 @@ turnMethods = {
 		if (data.display=='single') {
 
 			var left = corner.charAt(1)=='l';
-			if ((opts.page==1 && left) || (opts.page==data.pages && !left))
+			if ((opts.page==1 && left) || (opts.page==data.totalPages && !left))
 				e.preventDefault();
 			else {
 				if (left) {
