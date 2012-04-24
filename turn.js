@@ -260,6 +260,9 @@ turnMethods = {
 	
 		this.turn('page', opts.page);
 
+        // allow setting active corners as an option
+        corners = $.extend({}, corners, opts.corners);
+
 		// Event listeners
 
 		$(this).bind(events.start, function(e) {
