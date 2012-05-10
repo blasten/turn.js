@@ -44,12 +44,14 @@ $('#magazine').turn({gradients: true, acceleration: true});
 
 jQuery 1.7 or later
 
+#### Browser support
+* Chrome 12, Safari 5, Firefox 10, IE 9
 
+#### License
+Released under a non-commercial BSD license
 
 [Full documentation](https://github.com/blasten/turn.js/wiki/Reference)
 
 * * *
-
-turn.js is licensed under MIT license.
 
 [turnjs.com](http://www.turnjs.com/)
