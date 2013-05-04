@@ -1,9 +1,10 @@
-turn.js 4th release
-=========
 
-Get the new turn.js on [turnjs.com](http://www.turnjs.com/)
+![Bilby Stampede](http://turnjs.com/pics/small-turnjs-letters.png)
 
-### What's new?
+**Get the turn.js 4th release on [turnjs.com](http://www.turnjs.com/)**
+
+
+### What's new in turn.js 4th release?
 
 - Added option `autoCenter`
 
@@ -81,7 +82,7 @@ Turn.js is a plugin for jQuery that adds a beautiful transition similar to real 
 #### Usage
 
 **CSS code:**
-<pre>
+```css
 #magazine{
 	width: 800px;
 	height: 400px;
@@ -89,21 +90,21 @@ Turn.js is a plugin for jQuery that adds a beautiful transition similar to real 
 #magazine .turn-page{
 	background-color:#ccc;
 }
-</pre>
+```
 
 **HTML code:**
-<pre>
-&lt;div id=<span class="string">'magazine'</span>&gt;
-	&lt;div&gt; <span class="text">Page 1</span> &lt;/div&gt;
-	&lt;div&gt; <span class="text">Page 2</span> &lt;/div&gt;
-	&lt;div&gt; <span class="text">Page 3</span> &lt;/div&gt;
-&lt;/div&gt;
-</pre>
+```html
+<div id="magazine">
+	<div><span class="text">Page 1</span></div>
+	<div><span class="text">Page 2</span></div>
+	<div><span class="text">Page 3</span></div>
+</div>
+```
 
 **JavaScript code:**
-<pre>
+```javascript
 $('#magazine').turn({gradients: true, acceleration: true});
-</pre>
+```
 
 #### Requirements
 
