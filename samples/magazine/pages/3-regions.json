@@ -1,0 +1,45 @@
+[{
+	"x":256,
+	"y":161,
+	"width":128,
+	"height":15,
+	"class":"to-page",
+	"data":
+		{
+			"page": 8
+		}
+},
+{
+	"x":256,
+	"y":202,
+	"width":114,
+	"height":15,
+	"class":"to-page",
+	"data":
+		{
+			"page": 10
+		}
+},
+{
+	"x":256,
+	"y":244,
+	"width":126,
+	"height":15,
+	"class":"to-page",
+	"data":
+		{
+			"page": 12
+		}
+},
+{
+	"x":256,
+	"y":286,
+	"width":68,
+	"height":15,
+	"class":"to-page",
+	"data":
+		{
+			"page": 12
+		}
+}
+]
