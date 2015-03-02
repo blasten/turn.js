@@ -1,7 +1,7 @@
 
 ![Bilby Stampede](http://turnjs.com/pics/small-turnjs-letters.png)
 
-**Get the [turn.js 4th release](https://github.com/Estupendo/turn.js/releases)**
+##Get the [turn.js 4th release](https://github.com/Estupendo/turn.js/releases)
 
 
 ### What's new in turn.js 4th release?
