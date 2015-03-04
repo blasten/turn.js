@@ -1,33 +1,139 @@
-TURN.JS
+Turn.js
+www.turnjs.com
+
 ------------------------------------------------------
-Github: https://github.com/blasten/turn.js
-Reference: https://github.com/blasten/turn.js/wiki/Reference
-Website: www.turnjs.com 
+Turn.js 4.1.0 - 2012/11/65
+------------------------------------------------------
+
++ Added support to the Android's default browser
++ Fixed the hard page effect in IE9
++ Fixed issue #220
+
+------------------------------------------------------
+Turn.js 4.0.9 - 2012/08/03
+------------------------------------------------------
+
++ Fixed issue when using the .own-size class
++ Event zoom.change now is preventable
+
+------------------------------------------------------
+Turn.js 4.0.8 - 2012/07/16
+------------------------------------------------------
+
++ Added option direction
++ Added method direction
++ Added property direction
+
+------------------------------------------------------
+Turn.js 4.0.7 - 2012/07/12
+------------------------------------------------------
+
++ Fixed a issue of the pages method
++ Fixed issue #112
++ corner argument of the start event now returns null when using the methods next, previous and page
++ Fixed issue of certain samples in IE8
+
+------------------------------------------------------
+Turn.js 4.0.6 - 2012/07/10
+------------------------------------------------------
+
++ Fixed a issue of the peel method when using the single display
++ Fixed issue of using all the corners in single display mode
++ Added method version
++ Added option turnCorner
+
+------------------------------------------------------
+Turn.js 4.0.5 - 2012/06/16
+------------------------------------------------------
+
++ Fixed some visualization issues of the zoom viewport
+
+------------------------------------------------------
+Turn.js 4.0.4 - 2012/06/16
+------------------------------------------------------
+
++ Fixed a problem of the method page and event start
+
+------------------------------------------------------
+Turn.js 4.0.3 - 2012/06/16
+------------------------------------------------------
+
++ Fixed minor issues of HTML4 version
+
+------------------------------------------------------
+Turn.js 4.0.2 - 2012/06/16
+------------------------------------------------------
+
++ New Zoom viewport
++ New magazine sample
+
+------------------------------------------------------
+Turn.js 4.0.1 - 2012/06/12
+------------------------------------------------------
+
++ Fixed some issues when calculating z-index of pages
++ Added method peel
+
+------------------------------------------------------
+Release 4 Commercial - 2012/06/07
+------------------------------------------------------
+
++ Added option autoCenter
++ Added option zoom
++ Added property animating
++ Added property zoom
++ Added method center
++ Added method destroy
++ Added method is
++ Added method zoom
++ Added event missing
++ Added event zooming
++ Added class .even
++ Added class .fixed
++ Added class .hard
++ Added class .odd
++ Added class .own-size
++ Added class .sheet
++ Added class .sheet
++ Added the ignore attribute
++ New turn.html4.js
++ New scissors.js
++ Changed the class .turn-page to .page
++ Improved the animation frame generator with requestAnimationFrame
++ Improved the animation speed for hard pages with CSS3 transitions
++ Redesigned the event sequence to listen to only three events
++ Fixed issue #79
++ Fixed issue #91
++ Fixed issue about the event order turning
++ turned
++ Fixed issue about appending pages in wrong locations
+
 ------------------------------------------------------
 Release 3 - 2012/03/01
 ------------------------------------------------------
 
-- Added 'range'
-- Added 'addPage'
-- Added 'removePage'
-- Added 'hasPage'
-- Added 'pages'
-- Added 'display'
-- Added 'when' to the initial configuration
-- Added 'pages' to the initial configuration
-- Added 'inclination' to the initial configuration
-- Added 'first' event
-- Added 'last' event
-- Added gradients for non-webkit browsers
++ Added 'range'
++ Added 'addPage'
++ Added 'removePage'
++ Added 'hasPage'
++ Added 'pages'
++ Added 'display'
++ Added 'when' to the initial configuration
++ Added 'pages' to the initial configuration
++ Added 'inclination' to the initial configuration
++ Added 'first' event
++ Added 'last' event
++ Added gradients for non-webkit browsers
 
 ------------------------------------------------------
 Release 2 - 2012/02/15
 ------------------------------------------------------
 
-- Added 'size'.
-- Bug in Chrome 17-18 Beta about losing background-image was fixed.
++ Added 'size'.
++ Bug in Chrome 17-18 Beta about losing background-image was fixed.
 
 ------------------------------------------------------
 Release 1 - 2012/02/05
 ------------------------------------------------------
-- First alpha release 
++ First alpha release 
+
