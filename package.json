@@ -1,0 +1,12 @@
+{
+  "name": "turn.js",
+  "version": "1.0.5",
+  "description": "Web page flipper",
+  "main": "index.js",
+  "repository": "https://github.com/igghera/turn.js.git",
+  "author": "Andrea Gherardi <a.gherardi@cantierecreativo.net>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "1.12.0"
+  }
+}
