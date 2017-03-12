@@ -1446,7 +1446,7 @@ flipMethods = {
 			tan = Math.tan(alpha),
 			data = this.data().f,
 			ac = data.opts.acceleration,
-			h = data.wrapper.height(),
+			h = data.wrapper[0].offsetHeight,
 			o = flipMethods._c.call(this, point.corner),
 			top = point.corner.substr(0, 1) == 't',
 			left = point.corner.substr(1, 1) == 'l',
