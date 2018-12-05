@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/blasten/turn.js.git"
   },
-  "author": "Oskar Niburski <oskarniburski@gmail.com> (http://raksonibs.github.io)",
+  "author": "Emmanuel Garcia",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/blasten/turn.js/issues"
