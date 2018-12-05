@@ -1,0 +1,33 @@
+{
+  "name": "turn.js",
+  "version": "0.0.1",
+  "description": "A flip book JS library",
+  "license": "MIT",
+  "main": "turn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blasten/turn.js.git"
+  },
+  "author": "Oskar Niburski <oskarniburski@gmail.com> (http://raksonibs.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blasten/turn.js/issues"
+  },
+  "homepage": "https://github.com/blasten/turn.js#readme",
+  "files": [
+    "LICENSE",
+    "changelog",
+    "turn.js"
+  ],
+  "keywords": [
+    "turn",
+    "book",
+    "flip"
+  ],
+  "dependencies": {
+    "jquery": "^1.7.0"
+  }
+}
