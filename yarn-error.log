@@ -1,0 +1,62 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /Users/oskarniburski/.kiex/bin:/opt/local/bin:/opt/local/sbin:/Users/oskarniburski/go/bin:/Users/oskarniburski/anaconda/bin:/Users/oskarniburski/.rvm/gems/ruby-2.3.7/bin:/Users/oskarniburski/.rvm/gems/ruby-2.3.7@global/bin:/Users/oskarniburski/.rvm/rubies/ruby-2.3.7/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/bin/:/Desktop/imgcat:/Users/oskarniburski/.rvm/bin:/Applications/microchip/xc32/v1.40/bin:/usr/local/sbin:/Users/oskarniburski/.rvm/bin:/Applications/microchip/xc32/v1.40/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/go/bin:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+Yarn version: 
+  0.27.5
+
+Node version: 
+  11.3.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "turn.js",
+    "version": "0.0.1",
+    "description": "A flip book JS library",
+    "license": "MIT",
+    "main": "turn.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/blasten/turn.js.git"
+    },
+    "author": "Oskar Niburski <oskarniburski@gmail.com> (http://raksonibs.github.io)",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/blasten/turn.js/issues"
+    },
+    "homepage": "https://github.com/blasten/turn.js#readme",
+    "files": [
+      "LICENSE",
+      "changelog",
+      "turn.js"
+    ],
+    "keywords": [
+      "turn",
+      "book",
+      "flip"
+    ],
+    "dependencies": {
+      "jquery": "^1.7.0",
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/oskarniburski/Desktop/kook/turn.js/package.json: Unexpected token } in JSON at position 705
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/util/fs.js:554:57
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+      at /usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
