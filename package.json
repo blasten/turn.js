@@ -1,0 +1,24 @@
+{
+  "name": "turn.js",
+  "version": "1.0.0",
+  "description": "The page flip effect for HTML5",
+  "main": "turn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blasten/turn.js.git"
+  },
+  "keywords": [
+    "flip",
+    "jquery",
+    "flipbook"
+  ],
+  "author": "blasten",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blasten/turn.js/issues"
+  },
+  "homepage": "https://github.com/blasten/turn.js#readme"
+}
