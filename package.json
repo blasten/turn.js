@@ -1,0 +1,19 @@
+{
+  "name": "turn.js",
+  "description": "The page flip effect for HTML5",
+  "author": "Neo Wei Lin <weilinneo@gmail.com>",
+  "version": "1.0.0",
+  "homepage": "https://github.com/weilinneo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weilinneo/turn.js"
+  },
+  "bugs": {
+    "url": "https://github.com/weilinneo/turn.js/issues"
+  },
+  "main": "turn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
+}
