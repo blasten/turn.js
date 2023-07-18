@@ -93,6 +93,10 @@ var has3d,
 
 		cornerSize: 100,
 
+		// 角的控制范围细分到宽高
+		cornerSizeWidth: 200,
+		cornerSizeHeight: 200,
+
 		// Enables gradients
 
 		gradients: true,
@@ -237,7 +241,9 @@ turnMethods = {
 
 		// Define constants
 		if (has3d===undefined) {
+			// 检测浏览器是否支持 3D 变换，不严谨，如果需要确保浏览器支持 3D 变换，最好使用更完善的检测方式，例如 Modernizr 库
 			has3d = 'WebKitCSSMatrix' in window || 'MozPerspective' in document.body.style;
+			// 获取当前浏览器的 CSS 前缀
 			vendor = getPrefix();
 		}
 
@@ -1222,7 +1228,10 @@ flipMethods = {
 		var data = this.data().f;
 
 		if (opts) {
-			flipMethods.setData.call(this, {opts: $.extend({}, data.opts || flipOptions, opts) });
+			const cornerSizeWidth = parseInt(this.width()/3), 
+				cornerSizeHeight = parseInt(this.height()/2);
+			
+			flipMethods.setData.call(this, {opts: $.extend({}, data.opts || flipOptions, {cornerSizeWidth, cornerSizeHeight}, opts) });
 			return this;
 		} else
 			return data.opts;
@@ -1256,17 +1265,19 @@ flipMethods = {
 			width = this.width(),
 			height = this.height(),
 			c = {x: Math.max(0, e[0].pageX-pos.left), y: Math.max(0, e[0].pageY-pos.top)},
-			csz = data.opts.cornerSize,
+			cornerSizeWidth = data.opts.cornerSizeWidth || data.opts.cornerSize,
+			cornerSizeHeight = data.opts.cornerSizeHeight || data.opts.cornerSize,
 			allowedCorners = flipMethods._cAllowed.call(this);
 
+			// 判断是否超出元素范围
 			if (c.x<=0 || c.y<=0 || c.x>=width || c.y>=height) return false;
 
-			if (c.y<csz) c.corner = 't';
-			else if (c.y>=height-csz) c.corner = 'b';
+			if (c.y<cornerSizeHeight) c.corner = 't';
+			else if (c.y>=height-cornerSizeHeight) c.corner = 'b';
 			else return false;
 			
-			if (c.x<=csz) c.corner+= 'l';
-			else if (c.x>=width-csz) c.corner+= 'r';
+			if (c.x<=cornerSizeWidth) c.corner+= 'l';
+			else if (c.x>=width-cornerSizeWidth) c.corner+= 'r';
 			else return false;
 
 		return ($.inArray(c.corner, allowedCorners)==-1) ? false : c;
