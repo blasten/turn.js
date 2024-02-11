@@ -180,6 +180,9 @@ var has3d,
 			len = vendorPrefixes.length,
 			vendor = '';
 
+		if ('transform' in document.body.style)
+			return vendor;
+
 		while (len--)
 			if ((vendorPrefixes[len] + 'Transform') in document.body.style)
 				vendor='-'+vendorPrefixes[len].toLowerCase()+'-';
