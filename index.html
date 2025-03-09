@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipbook dengan Turn.js</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="turn.min.js"></script> <!-- Pastikan turn.min.js ada di folder yang benar -->
+    <style>
+        body { background: #f0f0f0; text-align: center; }
+        #flipbook { width: 600px; height: 400px; margin: auto; }
+        .page { width: 100%; height: 100%; background: white; text-align: center; line-height: 400px; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<div id="flipbook">
+    <div class="page">Halaman 1</div>
+    <div class="page">Halaman 2</div>
+    <div class="page">Halaman 3</div>
+    <div class="page">Halaman 4</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#flipbook").turn({
+            width: 600,
+            height: 400,
+            autoCenter: true
+        });
+    });
+</script>
+
+</body>
+</html>
