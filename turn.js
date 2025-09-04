@@ -1806,18 +1806,6 @@ flipMethods = {
 				data.corner.y = e[0].pageY-pos.top;
 
 				flipMethods._showFoldedPage.call(this, data.corner);
-			
-			} else if (!this.data().effect && this.is(':visible')) { // roll over
-				
-				var corner = flipMethods._cornerActivated.call(this, e[0]);
-				if (corner) {
-					var origin = flipMethods._c.call(this, corner.corner, data.opts.cornerSize/2);
-					corner.x = origin.x;
-					corner.y = origin.y;
-					flipMethods._showFoldedPage.call(this, corner, true);
-				} else
-					flipMethods.hideFoldedPage.call(this, true);
-
 			}
 		}
 	},
